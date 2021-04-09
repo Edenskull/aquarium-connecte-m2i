@@ -1,4 +1,30 @@
-# aquarium-connecte-m2i
+<div align="center">
+
+[![GitHub license](https://img.shields.io/github/license/Edenskull/aquarium-connecte-m2i?color=blue&style=for-the-badge)](https://github.com/Edenskull/aquarium-connecte-m2i/blob/master/LICENSE)
+![Sonar Quality Gate](https://img.shields.io/sonar/quality_gate/Edenskull_aquarium-connecte-m2i?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)
+
+</div>
+
+# Aquarium m2i
+Simple php web application to manage own ecosystem environment.
+
+## Table of contents
+- [Aquarium m2i](#aquarium-m2i)
+  - [Table of contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Installation](#installation)
+  - [Documentation](#documentation)
+
+## Introduction
+
+
+
+## Installation
+
+* On windows install WAMP or XAMPP
+* On mac install MAMP
+
+## Documentation
 
 https://getbootstrap.com/
 
