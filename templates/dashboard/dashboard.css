@@ -15,3 +15,19 @@ main {
 #corps {
     background-color: blue;
 }
+
+.card-header {
+    font-weight: bold;
+}
+
+.media-body {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.card-icon {
+    opacity: .9;
+    font-size: 2em;
+}
