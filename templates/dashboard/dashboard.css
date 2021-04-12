@@ -31,3 +31,63 @@ main {
     opacity: .9;
     font-size: 2em;
 }
+
+.ph-0 {
+    background-color: red !important;
+}
+
+.ph-1 {
+    background-color: orangered !important;
+}
+
+.ph-2 {
+    background-color: orange !important;
+}
+
+.ph-3 {
+    background-color: yellow !important;
+}
+
+.ph-4 {
+    background-color: yellowgreen !important;
+}
+
+.ph-5 {
+    background-color: greenyellow !important;
+}
+
+.ph-6 {
+    background-color: limegreen !important;
+}
+
+.ph-7 {
+    background-color: green !important;
+}
+
+.ph-8 {
+    background-color: chartreuse !important;
+}
+
+.ph-9 {
+    background-color: turquoise !important;
+}
+
+.ph-10 {
+    background-color: teal !important;
+}
+
+.ph-11 {
+    background-color: blue !important;
+}
+
+.ph-12 {
+    background-color: plum !important;
+}
+
+.ph-13 {
+    background-color: purple !important;
+}
+
+.ph-14 {
+    background-color: rebeccapurple !important;
+}

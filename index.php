@@ -1,9 +1,6 @@
 <?php
 
 session_start();
-if (!isset($_SESSION['view'])) {
-    $_SESSION['view'] = "dashboard";
-}
 
 ?>
 
@@ -17,16 +14,26 @@ include('templates/core/head.php');
 ?>
 
 <body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
     <?php
-
-        include('templates/'.$_SESSION['view'].'/'.$_SESSION['view'].'.php');
+        
+        include('templates/core/body.php');
 
     ?>
 
+    <script>
+        $(function() {
+            if(sessionStorage.getItem('view') == undefined) {
+                sessionStorage.setItem('view', 'login');
+            }
+            changePage();
+        });
+
+        function changePage() {
+            $("body").load("templates/" + sessionStorage.getItem('view') + "/" + sessionStorage.getItem('view') + ".php");
+            $("#styleDynamique").attr("href", "templates/" + sessionStorage.getItem('view') + "/" + sessionStorage.getItem('view') + ".css")
+        }
+    </script>
 </body>
 
 </html>
