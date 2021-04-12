@@ -31,6 +31,7 @@ include('templates/core/head.php');
 
         function changePage() {
             $("body").load("templates/" + sessionStorage.getItem('view') + "/" + sessionStorage.getItem('view') + ".php");
+            $("#pageTitle").text("Aquarium Connecté - " + sessionStorage.getItem('view'));
             $("#styleDynamique").attr("href", "templates/" + sessionStorage.getItem('view') + "/" + sessionStorage.getItem('view') + ".css")
         }
     </script>
