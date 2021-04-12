@@ -15,7 +15,7 @@
                                         <i class="card-icon bi bi-thermometer-half float-right"></i>
                                     </div>
                                     <div class="media-body text-end">
-                                        <h2>20°</h2>
+                                        <h2 id="temperature"></h2>
                                     </div>
                                 </div>
                             </div>
@@ -35,35 +35,47 @@
 </div>
 
 <script>
-    var data = $.ajax({
-        url: 'modules/request_temperature.php',
-        type: 'GET',
-        data: 'limite=2',
-        dataType: 'json',
-        success: function(data, status) {
-            var temperature = [];
-            var time = [];
-            data = data.reverse();
-            for (let entry of data) {
-                time.push(entry.timestamp);
-                temperature.push(entry.temperature);
-            }
-            console.log(time);
-            console.log(temperature);
-            var ctx = $("#chart").get(0).getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: time,
-                    datasets: [{
-                        label: 'Temperature by Time',
-                        data: temperature,
-                        fill: false,
-                        borderColor: 'rgb(75, 192, 192)',
-                        tension: 0.1
-                    }]
+    $(function() {
+        $.ajax({
+            url: 'modules/request_temperature.php',
+            type: 'GET',
+            data: 'limite=10&call=1',
+            dataType: 'json',
+            success: function(data) {
+                let temperature = [];
+                let time = [];
+                data = data.reverse();
+                for (let entry of data) {
+                    time.push(entry.timestamp);
+                    temperature.push(entry.temperature);
                 }
-            });
-        }
+                console.log(time);
+                console.log(temperature);
+                let ctx = $("#chart").get(0).getContext('2d');
+                let myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: time,
+                        datasets: [{
+                            label: 'Temperature by Time',
+                            data: temperature,
+                            fill: false,
+                            borderColor: 'rgb(75, 192, 192)',
+                            tension: 0.1
+                        }]
+                    }
+                });
+            }
+        });
+
+        $.ajax({
+            url: 'modules/request_temperature.php',
+            type: 'GET',
+            data: 'limite=10&call=2',
+            dataType: 'json',
+            success: function(data) {
+                $("#temperature").text(Math.round(data.temperature * 10) / 10 + "°");
+            }
+        });
     });
 </script>
