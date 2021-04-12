@@ -3,9 +3,9 @@
 class Database
 {
     private static $dbHost = "localhost";
-    private static $dbName = "inputraspberry";
+    private static $dbName = "test";
     private static $dbUser = "root";
-    private static $dbUserPassword = "root";
+    private static $dbUserPassword = "";
     private static $connection = null;
 
     public static function connect()
@@ -13,6 +13,7 @@ class Database
         try {
             self::$connection = new PDO("mysql:host=" . self::$dbHost . ";dbname=" . self::$dbName, self::$dbUser, self::$dbUserPassword);
         } catch (PDOException $e) {
+            http_response_code(500);
             die($e->getMessage());
         }
         return self::$connection;
