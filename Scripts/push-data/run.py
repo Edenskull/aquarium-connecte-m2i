@@ -36,6 +36,7 @@ def run(path):
         sys.exit("File path not found")
     cur.close()
     cnx.close()
+    open(path, "w").close()
 
 
 if __name__ == '__main__':
