@@ -6,7 +6,7 @@
 </div>
 
 # Aquarium m2i
-Simple php web application to manage own ecosystem environment.
+Python script to handle data management in the project.
 
 ## Table of contents
 - [Aquarium m2i](#aquarium-m2i)
@@ -21,15 +21,7 @@ Simple php web application to manage own ecosystem environment.
 
 ## Installation
 
-* On windows install WAMP or XAMPP
-* On mac install MAMP
+* Install Python 3.7 or above
 
 ## Documentation
 
-https://getbootstrap.com/
-
-https://www.php.net/manual/fr/book.pdo.php
-
-https://www.chartjs.org/
-
-Sonarcloud running
