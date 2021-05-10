@@ -1,5 +1,8 @@
 <div class="grid-container">
-    <div class="sidenav">
+    <div id="menu-button" class="burger">
+        <img src="./assets/Hamburger_icon.svg.png">
+    </div>
+    <div class="sidenav" id="menu">
         <img src="./assets/logo-krevett.png">
         <ul class="sidenav__list">
             <li class="sidenav__list-item">Mon aquarium</li>
@@ -23,6 +26,19 @@
         </div>
         <div class="main-cards">
             <div class="card w-100"><canvas id="chart"></canvas></div>
+            <div class="card w-50 light">
+                <div class="card-title">Ampoule 1</div>
+                <img src="./assets/ampoule.png" id="ampoule">
+                <div class="light-switch">
+                    <div class="switch-text">OFF</div>
+                    <label class="switch">
+                      <input type="checkbox" id="switch-box">
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="switch-text">ON</div>
+                </div>
+                <button>Envoyer</button>
+            </div>
         </div>
     </div>
 </div>
@@ -77,5 +93,26 @@
                 });
             }
         });
+    });
+    var switchButton = document.querySelector('#switch-box');
+
+    switchButton.addEventListener('click',function(){
+      var ampoule = document.getElementById("ampoule");
+      var statelight = ampoule.getAttribute("src");
+      if(statelight == "./assets/ampoule.png")
+        statelight = "./assets/ampoule-on.png";
+      else
+        statelight = "./assets/ampoule.png";
+      ampoule.setAttribute("src", statelight);
+      ampoule.classList.toggle('shine');
+    });
+
+    var menuButton = document.querySelector('#menu-button');
+    var menu = document.querySelector('#menu');
+
+    // show or hide
+    menuButton.addEventListener('click',function(){
+      menu.classList.toggle('show-menu');
+      menuButton.classList.toggle('close');
     });
 </script>
