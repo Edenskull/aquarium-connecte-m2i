@@ -3,7 +3,7 @@
         <img src="./assets/Hamburger_icon.svg.png">
     </div>
     <div class="sidenav" id="menu">
-        <div class="logout"><img src="./assets/logout.png"></div>
+        <div class="logout"><img src="./assets/logout.png" id="logout"></div>
         <div class="krevett"><img src="./assets/krevett.png"></div>
         <ul class="sidenav__list">
             <li class="sidenav__list-item">Mon aquarium</li>
@@ -110,6 +110,12 @@
 
     var menuButton = document.querySelector('#menu-button');
     var menu = document.querySelector('#menu');
+
+    $("#logout").click(function(){
+        $.get('modules/connexion.php?mode=disco');
+        sessionStorage.setItem('view', 'login');
+        changePage();
+    })
 
     // show or hide
     menuButton.addEventListener('click',function(){
