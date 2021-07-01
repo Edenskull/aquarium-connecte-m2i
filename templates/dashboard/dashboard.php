@@ -3,7 +3,8 @@
         <img src="./assets/Hamburger_icon.svg.png">
     </div>
     <div class="sidenav" id="menu">
-        <img src="./assets/logo-krevett.png">
+        <div class="logout"><img src="./assets/logout.png"></div>
+        <div class="krevett"><img src="./assets/krevett.png"></div>
         <ul class="sidenav__list">
             <li class="sidenav__list-item">Mon aquarium</li>
             <li class="sidenav__list-item">Ajouter un aquarium</li>
