@@ -3,12 +3,11 @@
         <img src="./assets/Hamburger_icon.svg.png">
     </div>
     <div class="sidenav" id="menu">
-        <div class="logout"><img src="./assets/logout.png"></div>
-        <div class="krevett"><img src="./assets/krevett.png"></div>
-        <ul class="sidenav__list">
-            <li class="sidenav__list-item">Mon aquarium</li>
-            <li class="sidenav__list-item">Ajouter un aquarium</li>
-        </ul>
+        <div class="imgFlex">
+            <div class="logout"><img src="./assets/logout.png"></div>
+            <div class="krevett"><img src="./assets/krevett.png"></div>
+        </div>
+        <button class="cameraButton">Watch Camera</button>
     </div>
     <div class="main">
         <div class="main-overview">
@@ -21,14 +20,14 @@
                 <div class="overviewcard__info" id="ph"></div>
             </div>
             <div class="overviewcard">
-                <div class="overviewcard__icon">Humidite</div>
+                <div class="overviewcard__icon">Humidity</div>
                 <div class="overviewcard__info" id="humidite"></div>
             </div>
         </div>
         <div class="main-cards">
             <div class="card w-100"><canvas id="chart"></canvas></div>
             <div class="card w-50 light">
-                <div class="card-title">Ampoule 1</div>
+                <div class="card-title">Bulb 1</div>
                 <img src="./assets/ampoule.png" id="ampoule">
                 <div class="light-switch">
                     <div class="switch-text">OFF</div>
@@ -38,7 +37,7 @@
                     </label>
                     <div class="switch-text">ON</div>
                 </div>
-                <button>Envoyer</button>
+                <button>Send</button>
             </div>
         </div>
     </div>

@@ -1,10 +1,17 @@
 /* Assign grid instructions to our parent grid container */
 button {
 	background-color: #66dad9;
-    border-radius: 15px;
+    border-radius: 5px;
     color: #fff;
     padding: 5px 10px;
     border-color: white;
+    margin: 0px 20px;
+    transition-duration: 0.4s;
+}
+
+button:hover{
+    background-color: #4aa1a0;
+    border-radius: 15px;
 }
 
 .grid-container {
@@ -33,6 +40,13 @@ button {
 .sidenav img{
 	margin: 20px;
 }
+
+.imgFlex{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .logout img{
     width: 50px;
 }

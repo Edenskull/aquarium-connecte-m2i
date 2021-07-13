@@ -27,7 +27,7 @@
                             </div>
                         </div>
                     </div>
-                    <button id="signin" type="button" class="btn btn-secondary mt-2">Signin</button>
+                    <button id="signin" type="button" class="btn btn-secondary mt-2">Sign in</button>
                     <button id="switch2" type="button" class="btn btn-secondary mt-2">Go to Login</button>
                 </form>
                 <form id="conn" class="">
