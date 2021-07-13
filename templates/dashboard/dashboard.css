@@ -263,3 +263,7 @@ input:checked + .slider:before {
 .ph-14 {
     background-color: rebeccapurple !important;
 }
+
+#logout {
+    cursor: pointer;
+}

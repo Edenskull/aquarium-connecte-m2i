@@ -4,7 +4,7 @@
     </div>
     <div class="sidenav" id="menu">
         <div class="imgFlex">
-            <div class="logout"><img src="./assets/logout.png"></div>
+            <div class="logout"><img src="./assets/logout.png" id="logout"></div>
             <div class="krevett"><img src="./assets/krevett.png"></div>
         </div>
         <button class="cameraButton">Watch Camera</button>
@@ -109,6 +109,12 @@
 
     var menuButton = document.querySelector('#menu-button');
     var menu = document.querySelector('#menu');
+
+    $("#logout").click(function(){
+        $.get('modules/connexion.php?mode=disco');
+        sessionStorage.setItem('view', 'login');
+        changePage();
+    })
 
     // show or hide
     menuButton.addEventListener('click',function(){
