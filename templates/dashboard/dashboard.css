@@ -92,7 +92,7 @@ button:hover{
 }
 
 .main-cards {
-	display: grid;
+	display: flex;
 	grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
 	column-count: 2;
 	column-gap: 20px;
