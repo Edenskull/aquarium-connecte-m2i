@@ -19,10 +19,6 @@
                 <div class="overviewcard__icon">PH</div>
                 <div class="overviewcard__info" id="ph"></div>
             </div>
-            <div class="overviewcard">
-                <div class="overviewcard__icon">Humidity</div>
-                <div class="overviewcard__info" id="humidite"></div>
-            </div>
         </div>
         <div class="main-cards">
             <div class="card w-100"><canvas id="chart"></canvas></div>
@@ -38,6 +34,11 @@
                     <div class="switch-text">ON</div>
                 </div>
                 <button>Send</button>
+            </div>
+            <div class="card w-50 light">
+                <div class="card-title">Feed the fish</div>
+                <img src="./assets/fish-food.png" id="fishfood">
+                <button>Feed</button>
             </div>
         </div>
     </div>

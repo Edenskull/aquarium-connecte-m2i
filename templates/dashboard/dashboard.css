@@ -116,8 +116,8 @@ button:hover{
 	background-color: burlywood;
 }
 
-#ampoule{
-	width : 120px;
+.light img{
+    width:  120px;
 }
 
 .shine{
