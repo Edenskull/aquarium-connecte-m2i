@@ -6,7 +6,7 @@
 </div>
 
 # Aquarium m2i
-Simple php web application to manage own ecosystem environment.
+Simple php web application to manage own ecosystem environment. 
 
 ## Table of contents
 - [Aquarium m2i](#aquarium-m2i)
