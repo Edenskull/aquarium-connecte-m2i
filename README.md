@@ -3,7 +3,7 @@
 [![GitHub license](https://img.shields.io/github/license/Edenskull/aquarium-connecte-m2i?color=blue&style=for-the-badge)](https://github.com/Edenskull/aquarium-connecte-m2i/blob/master/LICENSE)
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/dashboard?id=Edenskull_aquarium-connecte-m2i)
 
-</div>
+</div> 
 
 # Aquarium m2i
 Simple php web application to manage own ecosystem environment. 
