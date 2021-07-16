@@ -40,3 +40,8 @@ main {
 #dashboard {
     display: none;
 }
+
+.card-img-top {
+    overflow: hidden;
+    height: 250px;
+}

@@ -140,7 +140,16 @@
             </div>
         </div>
         <div class="container-fluid mx-3 my-3" id="information">
-
+            <div class="card mb-3">
+                <div class="card-img-top">
+                    <img src="assets/88.jpg" alt="..." style="width: 100%; object-position: 0 -170px; ">
+                </div>
+                <div class="card-body text-dark">
+                    <h5 class="card-title">Bienvenu sur le dashboard Domo Tech</h5>
+                    <p class="card-text">Vous pouvez d'ores et déjà débuter votre experience en créant un premier aquarium. Commencez par configurer votre raspberry.</p>
+                    <p class="card-text"><small class="text-muted">Copyright @ UTEC M2I Groupe GSITR</small></p>
+                </div>
+            </div>
         </div>
 
         <!-- Modal Lumière -->
@@ -230,6 +239,9 @@
         $(document).ready(function () {
             'use strict'
             isConnected();
+            if(sessionStorage.getItem('currentAquarium')) {
+                checkAccess();
+            }
             getAquarium();
             getLights();
             getFoods();

@@ -86,6 +86,7 @@ function login(username, password) {
 }
 
 function disconnect() {
+    sessionStorage.clear();
     $.ajax({
         url: 'modules/session.php',
         data: 'mode=disconnect',

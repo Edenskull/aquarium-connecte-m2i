@@ -1,3 +1,15 @@
+function checkAccess() {
+    $.ajax({
+        url: 'modules/request_data.php',
+        data: 'mode=checkAccess&aquaId=' + sessionStorage.getItem('currentAquarium'),
+        type: 'POST',
+        dataType: 'json'
+    }).fail(function() {
+        sessionStorage.clear();
+        window.location.href = "index.html"
+    });
+}
+
 function getAquarium() {
     $.ajax({
         url: 'modules/request_data.php',

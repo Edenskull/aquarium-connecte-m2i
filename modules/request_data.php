@@ -17,11 +17,38 @@ function getAllAquarium() {
     echo json_encode($result);
 }
 
+function checkAccess() {
+    $db = Database::connect();
+    $aquaId = $_POST['aquaId'];
+    $statement = $db->prepare('SELECT * FROM `aquarium-user` WHERE id_aquarium = :idAqua AND id_user = :idUser');
+    $statement->bindValue('idAqua', $aquaId, PDO::PARAM_INT);
+    $statement->bindValue('idUser', $_SESSION['id'], PDO::PARAM_INT);
+    $statement->execute();
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
+    Database::disconnect();
+    if(count($result) > 0) {
+        $response = array(
+            "message" => "Access to current aquarium."
+        );
+        http_response_code(200);
+        echo json_encode($response);
+    } else {
+        $response = array(
+            "message" => "Forbidden access to current aquarium."
+        );
+        http_response_code(403);
+        echo json_encode($response);
+    }
+}
+
 function getLastData() {
     $db = Database::connect();
     $aquaId = $_POST['aquaId'];
-    $statement = $db->prepare('SELECT D.ph, D.temperature, D.humidite, D.timestamp FROM data as D, `aquarium-data` as AD WHERE D.id = AD.id_data AND AD.id_aquarium = :aquaId ORDER BY D.id DESC LIMIT 1');
+    $userId = $_SESSION['id'];
+    $statement = $db->prepare('SELECT D.ph, D.temperature, D.humidite, D.timestamp FROM data as D, `aquarium-data` as AD, `aquarium-user` as AU WHERE D.id = AD.id_data AND AD.id_aquarium = :aquaId AND AU.id_aquarium = :aquaId2 AND AU.id_user = :userId ORDER BY D.id DESC LIMIT 1');
     $statement->bindValue('aquaId', $aquaId, PDO::PARAM_INT);
+    $statement->bindValue('aquaId2', $aquaId, PDO::PARAM_INT);
+    $statement->bindValue('userId', $userId, PDO::PARAM_INT);
     $statement->execute();
     $result = $statement->fetch(PDO::FETCH_ASSOC);
     Database::disconnect();
@@ -32,8 +59,11 @@ function getLastData() {
 function getLastTenData() {
     $db = Database::connect();
     $aquaId = $_POST['aquaId'];
-    $statement = $db->prepare('SELECT D.ph, D.temperature, D.humidite, D.timestamp FROM data as D, `aquarium-data` as AD WHERE D.id = AD.id_data AND AD.id_aquarium = :aquaId ORDER BY D.id DESC LIMIT 10');
+    $userId = $_SESSION['id'];
+    $statement = $db->prepare('SELECT D.ph, D.temperature, D.humidite, D.timestamp FROM data as D, `aquarium-data` as AD, `aquarium-user` as AU WHERE D.id = AD.id_data AND AD.id_aquarium = :aquaId AND AU.id_aquarium = :aquaId2 AND AU.id_user = :userId ORDER BY D.id DESC LIMIT 10');
     $statement->bindValue('aquaId', $aquaId, PDO::PARAM_INT);
+    $statement->bindValue('aquaId2', $aquaId, PDO::PARAM_INT);
+    $statement->bindValue('userId', $userId, PDO::PARAM_INT);
     $statement->execute();
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
     Database::disconnect();
@@ -196,6 +226,8 @@ if($_POST['mode'] == "aquarium") {
     updateFood();
 } else if($_POST['mode'] == "addAqua") {
     addAqua();
+} else if($_POST['mode'] == "checkAccess") {
+    checkAccess();
 }
 
 ?>
