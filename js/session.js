@@ -18,41 +18,9 @@ function register(username, password, email) {
         type: 'POST',
         dataType: 'json'
     }).done(function(result) {
-        toastr.success(result.message, "Account System", {
-            "closeButton": false,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": false,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "0",
-            "hideDuration": "0",
-            "timeOut": "0",
-            "extendedTimeOut": "0",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        });
+        displayToast(result.message, "Account System");
     }).fail(function(result) {
-        toastr.error(result.responseJSON.message, "Account System", {
-            "closeButton": false,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": false,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "0",
-            "hideDuration": "0",
-            "timeOut": "0",
-            "extendedTimeOut": "0",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        });
+        displayToast(result.responseJSON.message, "Account System");
     });
 }
 
@@ -65,23 +33,7 @@ function login(username, password) {
     }).done(function() {
         window.location.href = "index.html";
     }).fail(function(result) {
-        toastr.error(result.responseJSON.message, "Account System", {
-            "closeButton": false,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": false,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "0",
-            "hideDuration": "0",
-            "timeOut": "0",
-            "extendedTimeOut": "0",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        });
+        displayToast(result.responseJSON.message, "Account System");
     });
 }
 
@@ -94,5 +46,25 @@ function disconnect() {
         dataType: 'json'
     }).done(function(result) {
         window.location.href = "login.html"
+    });
+}
+
+function displayToast(message, title) {
+    toastr.error(message, title, {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "0",
+        "hideDuration": "0",
+        "timeOut": "0",
+        "extendedTimeOut": "0",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
     });
 }

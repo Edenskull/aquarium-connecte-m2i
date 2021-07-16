@@ -156,23 +156,7 @@ function addLight(name) {
     }).done(function() {
         window.location.href = "index.html"
     }).fail(function(result) {
-        toastr.error(result.responseJSON.message, "Light System", {
-            "closeButton": false,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": false,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "0",
-            "hideDuration": "0",
-            "timeOut": "0",
-            "extendedTimeOut": "0",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        });
+        displayToast(result.responseJSON.message, "Light System");
     });
 }
 
@@ -185,23 +169,7 @@ function addFood(name) {
     }).done(function() {
         window.location.href = "index.html"
     }).fail(function(result) {
-        toastr.error(result.responseJSON.message, "Food System", {
-            "closeButton": false,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": false,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "0",
-            "hideDuration": "0",
-            "timeOut": "0",
-            "extendedTimeOut": "0",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        });
+        displayToast(result.responseJSON.message, "Food System");
     });
 }
 
@@ -214,22 +182,26 @@ function addAqua(name) {
     }).done(function() {
         window.location.href = "index.html"
     }).fail(function(result) {
-        toastr.error(result.responseJSON.message, "Aquarium System", {
-            "closeButton": false,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": false,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "0",
-            "hideDuration": "0",
-            "timeOut": "0",
-            "extendedTimeOut": "0",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        });
+        displayToast(result.responseJSON.message, "Aquarium System");
+    });
+}
+
+function displayToast(message, title) {
+    toastr.error(message, title, {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "0",
+        "hideDuration": "0",
+        "timeOut": "0",
+        "extendedTimeOut": "0",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
     });
 }
