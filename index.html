@@ -23,11 +23,8 @@
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item" id="listAquarium"></li>
-                <li>
-                    <a href="#" class="nav-link text-white">
-                        <i class="bi bi-plus"></i>
-                        Ajouter un aquarium
-                    </a>
+                <li class="nav item">
+                    <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#modalAqua"><i class="bi bi-plus"></i>Ajouter un aquarium</button>
                 </li>
             </ul>
             <hr>
@@ -87,15 +84,135 @@
             </div>
             <div class="row justify-content-between">
                 <div class="col">
-                    <div class="card text-white bg-primary mb-3 ml-2">
+                    <div class="card text-white bg-primary mb-3 ml-2" style="height: 250px; max-height:250px;">
                         <div class="card-header">History</div>
-                        <canvas id="cardGraph" height="250" style="max-height: 250px;"></canvas>
+                        <div class="card-body p-0">
+                            <canvas id="cardGraph"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-between">
+                <div class="col">
+                    <div class="card text-white bg-primary mb-3 ml-2">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span>Gestion des lumières</span>
+                            <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalLight">
+                                <i class="bi bi-plus"></i>
+                            </button>
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table table-primary m-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyLight"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-white bg-primary mb-3 ml-2">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span>Gestion des distributeurs</span>
+                            <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalFood">
+                                <i class="bi bi-plus"></i>
+                            </button>
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table table-primary m-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyFood"></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="container-fluid mx-3 my-3" id="information">
 
+        </div>
+
+        <!-- Modal Lumière -->
+        <div class="modal fade text-dark" id="modalLight" tabindex="-1" aria-labelledby="modalLightLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLightLabel">Ajouter une nouvelle lumière</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="lightName" class="form-label">Nom de la lumière</label>
+                                <input type="text" class="form-control" id="lightName">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="saveLight">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Food -->
+        <div class="modal fade text-dark" id="modalFood" tabindex="-1" aria-labelledby="modalFoodLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalFoodLabel">Ajouter un distributeurs</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="foodName" class="form-label">Nom du distributeur</label>
+                                <input type="text" class="form-control" id="foodName">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="saveFood">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Aquarium -->
+        <div class="modal fade text-dark" id="modalAqua" tabindex="-1" aria-labelledby="modalAquaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAquaLabel">Ajouter un aquarium</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="aquaName" class="form-label">Nom de l'aquarium</label>
+                                <input type="text" class="form-control" id="aquaName">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="saveAqua">Save changes</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -114,6 +231,17 @@
             'use strict'
             isConnected();
             getAquarium();
+            getLights();
+            getFoods();
+            $("#saveLight").click(function() {
+                addLight($("#lightName").val());
+            });
+            $("#saveFood").click(function() {
+                addFood($("#foodName").val());
+            });
+            $("#saveAqua").click(function() {
+                addAqua($("#aquaName").val());
+            });
         });
     </script>
 

@@ -1,8 +1,10 @@
 var ctx = $("#cardGraph").get(0).getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'line',
-    responsive: true,
-    maintainAspectRatio: false,
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+    },
     data: {
         datasets: []
     }
@@ -29,6 +31,5 @@ function createGraphInstance(times, temperatures, phs, humidites) {
         borderColor: 'rgb(100, 50, 180)',
         tension: 0.1
     }];
-    myChart.canvas.parentNode.style.height = '250px';
     myChart.update();
 }

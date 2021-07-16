@@ -7,12 +7,21 @@ function getAquarium() {
     }).done(function(result) {
         console.log(result)
         result.forEach(element => {
-            $("#listAquarium").append('<a href="#" class="nav-link text-white" id="' + element['id'] + '"><i class="bi bi-play-fill"></i></i>' + element['name'] + '</a>')
+            $("#listAquarium").append('<button id="' + element['id'] + '" type="button" class="list-group-item list-group-item-action">' + element['name'] + '</button>');
         });
-        $("#listAquarium a").click(function() {
+        if(sessionStorage.getItem('currentAquarium')){
+            getLastData();
+            if($("#dashboard").css('display') == "none") {
+                $("#dashboard").show();
+                $("#information").hide();
+            }
+        }
+        $("#listAquarium button").click(function() {
             let currentId = $(this).attr('id');
             sessionStorage.setItem('currentAquarium', currentId);
             getLastData();
+            getLights();
+            getFoods();
             if($("#dashboard").css('display') == "none") {
                 $("#dashboard").show();
                 $("#information").hide();
@@ -30,11 +39,78 @@ function getLastData() {
         type: 'POST',
         dataType: 'json'
     }).done(function(result) {
-        $("#temperatureValue").text(result.temperature + "°celsius");
-        $("#phValue").text("PH " + result.ph);
-        $("#humiditeValue").text(result.humidite + " %");
+        let temperature = (result.temperature == undefined) ? "No Data" : result.temperature + "°celsius";
+        let ph = (result.ph == undefined) ? "No Data" : "PH " + result.ph;
+        let humidite = (result.humidite == undefined) ? "No Data" : result.humidite + " %";
+        $("#temperatureValue").text(temperature);
+        $("#phValue").text(ph);
+        $("#humiditeValue").text(humidite);
         createGraph();
-    })
+    });
+}
+
+function getLights() {
+    $("#bodyLight").empty();
+    let status;
+    $.ajax({
+        url: 'modules/request_data.php',
+        data: 'mode=getLights&aquaId=' + sessionStorage.getItem('currentAquarium'),
+        type: 'POST',
+        dataType: 'json'
+    }).done(function(result) {
+        result.forEach(function(row) {
+            if(row['status'] == 0) {
+                status = '<button type="button" class="btn btn-outline-primary" id="' + row['id'] + '">On</button>';
+            } else {
+                status = '<button type="button" class="btn btn-primary" id="' + row['id'] + '">Off</button>';
+            }
+            $("#bodyLight").append('<tr><th scope="row">' + row['id'] + '</th><td>' + row['name'] + '</td><td>' + status + '</td></tr>')
+        });
+        $("td button").click(function() {
+            let currentId = $(this).attr('id');
+            let currentStatus = $(this).text();
+            $.ajax({
+                url: 'modules/request_data.php',
+                data: 'mode=updateLight&lightId=' + currentId + '&status=' + currentStatus,
+                type: 'POST',
+                dataType: 'json'
+            }).done(function() {
+                window.location.href = "index.html"
+            });
+        });
+    });
+}
+
+function getFoods() {
+    let status;
+    $("#bodyFood").empty();
+    $.ajax({
+        url: 'modules/request_data.php',
+        data: 'mode=getFoods&aquaId=' + sessionStorage.getItem('currentAquarium'),
+        type: 'POST',
+        dataType: 'json'
+    }).done(function(result) {
+        result.forEach(function(row) {
+            if(row['status'] == 0) {
+                status = '<button type="button" class="btn btn-outline-primary" id="' + row['id'] + '">On</button>';
+            } else {
+                status = '<button type="button" class="btn btn-primary" id="' + row['id'] + '">Off</button>';
+            }
+            $("#bodyFood").append('<tr><th scope="row">' + row['id'] + '</th><td>' + row['name'] + '</td><td>' + status + '</td></tr>')
+        });
+        $("td button").click(function() {
+            let currentId = $(this).attr('id');
+            let currentStatus = $(this).text();
+            $.ajax({
+                url: 'modules/request_data.php',
+                data: 'mode=updateFood&foodId=' + currentId + '&status=' + currentStatus,
+                type: 'POST',
+                dataType: 'json'
+            }).done(function() {
+                window.location.href = "index.html"
+            });
+        });
+    });
 }
 
 function createGraph() {
@@ -56,5 +132,92 @@ function createGraph() {
             humidites.push(row.humidite);
         });
         createGraphInstance(times, temperatures, phs, humidites);
-    })
+    });
+}
+
+function addLight(name) {
+    $.ajax({
+        url: 'modules/request_data.php',
+        data: 'mode=addLight&aquaId=' + sessionStorage.getItem('currentAquarium') + '&lightName=' + name,
+        type: 'POST',
+        dataType: 'json'
+    }).done(function() {
+        window.location.href = "index.html"
+    }).fail(function(result) {
+        toastr.error(result.responseJSON.message, "Light System", {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "0",
+            "hideDuration": "0",
+            "timeOut": "0",
+            "extendedTimeOut": "0",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        });
+    });
+}
+
+function addFood(name) {
+    $.ajax({
+        url: 'modules/request_data.php',
+        data: 'mode=addFood&aquaId=' + sessionStorage.getItem('currentAquarium') + '&foodName=' + name,
+        type: 'POST',
+        dataType: 'json'
+    }).done(function() {
+        window.location.href = "index.html"
+    }).fail(function(result) {
+        toastr.error(result.responseJSON.message, "Food System", {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "0",
+            "hideDuration": "0",
+            "timeOut": "0",
+            "extendedTimeOut": "0",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        });
+    });
+}
+
+function addAqua(name) {
+    $.ajax({
+        url: 'modules/request_data.php',
+        data: 'mode=addAqua&aquaName=' + name,
+        type: 'POST',
+        dataType: 'json'
+    }).done(function() {
+        window.location.href = "index.html"
+    }).fail(function(result) {
+        toastr.error(result.responseJSON.message, "Aquarium System", {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "0",
+            "hideDuration": "0",
+            "timeOut": "0",
+            "extendedTimeOut": "0",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        });
+    });
 }
