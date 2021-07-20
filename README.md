@@ -1,7 +1,6 @@
 <div align="center">
 
 [![GitHub license](https://img.shields.io/github/license/Edenskull/aquarium-connecte-m2i?color=blue&style=for-the-badge)](https://github.com/Edenskull/aquarium-connecte-m2i/blob/master/LICENSE)
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/dashboard?id=Edenskull_aquarium-connecte-m2i)
 [![Quality Gate Status](https://img.shields.io/sonar/alert_status/Edenskull_aquarium-connecte-m2i?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)](https://sonarcloud.io/dashboard?id=Edenskull_aquarium-connecte-m2i)
 
 </div> 
