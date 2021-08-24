@@ -1,14 +1,18 @@
 import mysql.connector
-import RPi.GPIO as GPIO
 import time
 import sys
 import datetime
 import random
 
-def run():
-    temp = random.randint(19,24)
+
+id_aquarium = 1
+
+
+def push_data():
+    temperature = random.randint(19, 24)
+    ph = random.randint(0, 14)
+    humidite = random.randint(0, 100)
     try:
-        print("1")
         cnx = mysql.connector.connect(
             host="sql4.freemysqlhosting.net",
             user="sql4432430",
@@ -18,13 +22,22 @@ def run():
     except mysql.connector.Error as err:
         print(err)
         sys.exit(err)
-    today = datetime.datetime.now()
-    print("1")
     query = (
-        "UPDATE data D SET D.temperature = %s WHERE D.id = 1"
+        "INSERT INTO data (ph, temperature, humidite) VALUES (%s, %s, %s)"
     )
     try:
-        cur.execute(query, [temp])
+        cur.execute(query, [ph, temperature, humidite])
+    except mysql.connector.Error as err:
+        print(err)
+        cur.close()
+        cnx.close()
+        sys.exit(err)
+    id_data = cur.getlastrowid()
+    query = (
+        "INSERT INTO `aquarium-data` (id_aquarium, id_data) VALUES (%s, %s)"
+    )
+    try:
+        cur.execute(query, [id_aquarium, id_data])
     except mysql.connector.Error as err:
         print(err)
         cur.close()
@@ -33,9 +46,9 @@ def run():
     cnx.commit()
     cur.close()
     cnx.close()
-    print("2")
 
-while (True):
+
+while True:
     time.sleep(5)
-    run()
+    push_data()
     
