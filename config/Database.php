@@ -2,10 +2,10 @@
 
 class Database
 {
-    private static $dbHost = "localhost";
-    private static $dbName = "aquarium-m2i";
-    private static $dbUser = "test";
-    private static $dbUserPassword = "123";
+    private static $dbHost = "sql4.freemysqlhosting.net";
+    private static $dbName = "sql4432430";
+    private static $dbUser = "sql4432430";
+    private static $dbUserPassword = "vakT5EI9ft";
     private static $connection = null;
 
     public static function connect()
